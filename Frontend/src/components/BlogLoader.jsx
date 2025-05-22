@@ -10,7 +10,7 @@ const BlogLoader = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3000/api/blogs");
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/blogs`);
         console.log(data);
         setBlogs(data);
       } catch (error) {

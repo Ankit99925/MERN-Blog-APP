@@ -9,7 +9,7 @@ const Blogs = ({ blog }) => {
   const handleLike = async () => {
     try {
       await axios
-        .put(`http://localhost:3000/api/blogs/${blog._id}/like`)
+        .put(`${import.meta.env.VITE_API_URL}/blogs/${blog._id}/like`)
         .then((response) => {
           updateBlog(response.data);
         });
@@ -19,7 +19,7 @@ const Blogs = ({ blog }) => {
   };
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:3000/api/blogs/${blog._id}`).then(() => {
+    axios.delete(`${import.meta.env.VITE_API_URL}/blogs/${blog._id}`).then(() => {
       deleteBlog(blog._id);
     });
   };

@@ -16,7 +16,7 @@ const CreateBlog = () => {
     const author = authorRef.current.value;
 
     axios
-      .post("http://localhost:3000/api/blogs", {
+      .post(`${import.meta.env.VITE_API_URL}/blogs`, {
         title,
         content,
         author,

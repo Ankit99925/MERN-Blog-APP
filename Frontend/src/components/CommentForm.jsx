@@ -10,7 +10,7 @@ const CommentForm = ({ blogId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:3000/api/blogs/${blogId}/comment`, {
+      .put(`${import.meta.env.VITE_API_URL}/blogs/${blogId}/comment`, {
         username: e.target.username.value,
         comment: e.target.comment.value,
       })

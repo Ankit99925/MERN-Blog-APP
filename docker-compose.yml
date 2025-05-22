@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=${VITE_API_URL}
+    container_name: blog-frontend
+    restart: always
+    ports:
+      - "${FRONTEND_PORT:-8081}:80"
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: blog-backend
+    restart: always
+    ports:
+      - "${BACKEND_PORT:-3001}:${PORT:-3001}"
+    environment:
+      - PORT=${PORT:-3001}
+      - MONGO_DB_URL=${MONGO_DB_URL}
+    env_file:
+      - ./.env
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
